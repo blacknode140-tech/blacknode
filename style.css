@@ -948,3 +948,862 @@ font-size:.9rem;
         );
 
 }
+
+/*=========================================
+                PLAY
+=========================================*/
+
+.play{
+
+    padding:120px 6%;
+    background:#050505;
+
+}
+
+.play-container{
+
+    max-width:1600px;
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:340px 1fr;
+
+    gap:40px;
+
+}
+
+
+/*=========================================
+            INFORMACIÓN
+=========================================*/
+
+.play-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+.play-info .section-tag{
+
+    font-size:5rem;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+    line-height:.9;
+
+    margin-bottom:30px;
+
+}
+
+.play-info h2{
+
+    color:#7C3AED;
+
+    font-size:2rem;
+
+    text-transform:uppercase;
+
+    margin-bottom:25px;
+
+    line-height:1.1;
+
+}
+
+.play-info p{
+
+    color:#b8b8b8;
+
+    line-height:1.8;
+
+    font-size:1rem;
+
+}
+
+
+/*=========================================
+            TARJETAS
+=========================================*/
+
+.play-cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:22px;
+
+}
+
+
+/*=========================================
+              CARD
+=========================================*/
+
+.play-card{
+
+    background:#0B0B0F;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:12px;
+
+    padding:35px 20px;
+
+    text-align:center;
+
+    transition:.35s;
+
+    cursor:pointer;
+
+}
+
+.play-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#7C3AED;
+
+    box-shadow:0 15px 35px rgba(124,58,237,.20);
+
+}
+
+.play-card h3{
+
+    font-size:1.8rem;
+
+    margin-bottom:8px;
+
+    text-transform:uppercase;
+
+}
+
+.play-card span{
+
+    display:block;
+
+    color:#9a9a9a;
+
+    margin-bottom:35px;
+
+}
+
+.play-card img{
+
+    width:90px;
+
+    margin-bottom:35px;
+
+}
+
+.play-card h4{
+
+    font-size:3rem;
+
+    font-weight:800;
+
+    margin-bottom:8px;
+
+}
+
+.play-card small{
+
+    color:#b5b5b5;
+
+    letter-spacing:2px;
+
+}
+
+
+/*=========================================
+            LEVEL UP
+=========================================*/
+
+.featured{
+
+    border:2px solid #7C3AED;
+
+    background:linear-gradient(
+        180deg,
+        rgba(124,58,237,.18),
+        rgba(10,10,10,1)
+    );
+
+}
+
+.featured h3{
+
+    color:#FFD43B;
+
+}
+
+.featured h4{
+
+    color:#FFD43B;
+
+}
+
+
+/*=========================================
+            HORA EXTRA
+=========================================*/
+
+.extra-hour{
+
+    grid-column:2;
+
+    margin-top:25px;
+
+    display:grid;
+
+    grid-template-columns:260px 1fr 260px;
+
+    align-items:center;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+}
+
+.extra-title{
+
+    padding:30px;
+
+    background:#0D0D10;
+
+    color:#7C3AED;
+
+    font-size:2rem;
+
+    font-weight:800;
+
+    text-align:center;
+
+}
+
+.extra-description{
+
+    padding:30px;
+
+    color:#d4d4d4;
+
+    font-size:1.1rem;
+
+}
+
+.extra-price{
+
+    background:#090909;
+
+    text-align:center;
+
+    font-size:3rem;
+
+    font-weight:900;
+
+    padding:20px;
+
+}
+
+.extra-price span{
+
+    display:block;
+
+    font-size:.85rem;
+
+    color:#b5b5b5;
+
+    letter-spacing:2px;
+
+    margin-top:8px;
+
+}
+
+
+/*=========================================
+            RESPONSIVE
+=========================================*/
+
+@media(max-width:1400px){
+
+.play-cards{
+
+grid-template-columns:repeat(3,1fr);
+
+}
+
+.featured{
+
+grid-column:span 3;
+
+}
+
+}
+
+
+@media(max-width:992px){
+
+.play-container{
+
+grid-template-columns:1fr;
+
+}
+
+.play-info{
+
+text-align:center;
+
+}
+
+.extra-hour{
+
+grid-column:auto;
+
+grid-template-columns:1fr;
+
+}
+
+.extra-title,
+.extra-description,
+.extra-price{
+
+text-align:center;
+
+}
+
+}
+
+
+@media(max-width:768px){
+
+.play{
+
+padding:90px 25px;
+
+}
+
+.play-cards{
+
+grid-template-columns:1fr;
+
+}
+
+.featured{
+
+grid-column:auto;
+
+}
+
+.play-info .section-tag{
+
+font-size:4rem;
+
+}
+
+.play-info h2{
+
+font-size:1.6rem;
+
+}
+
+.play-card{
+
+padding:30px 20px;
+
+}
+
+.play-card img{
+
+width:80px;
+
+}
+
+.play-card h4{
+
+font-size:2.5rem;
+
+}
+
+.extra-title{
+
+font-size:1.6rem;
+
+}
+
+.extra-price{
+
+font-size:2.4rem;
+
+}
+
+}
+
+.last-hour{
+
+    background-image:url("resources/ChatGPT\ Image\ 27\ jul\ 2026\,\ 07_01_21.png");
+
+    background-size:cover;
+
+    background-position:center;
+
+}
+/*=========================================
+            LAST HOUR
+=========================================*/
+
+.last-hour{
+
+    position:relative;
+
+    padding:80px 6%;
+
+    overflow:hidden;
+
+}
+
+.last-hour-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        90deg,
+        rgba(5,5,5,.90) 0%,
+        rgba(5,5,5,.70) 25%,
+        rgba(5,5,5,.25) 55%,
+        rgba(5,5,5,.70) 100%
+    );
+
+}
+
+.last-hour-container{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:1600px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:40px;
+
+}
+
+
+/*=========================================
+            INFORMACIÓN
+=========================================*/
+
+.last-hour-content{
+
+    max-width:450px;
+
+}
+
+.last-hour-tag{
+
+    display:block;
+
+    font-size:4rem;
+
+    font-weight:900;
+
+    color:#FFC107;
+
+    text-transform:uppercase;
+
+    margin-bottom:20px;
+
+}
+
+.last-hour-content h2{
+
+    font-size:2.2rem;
+
+    text-transform:uppercase;
+
+    margin-bottom:18px;
+
+}
+
+.last-hour-content p{
+
+    color:#D0D0D0;
+
+    font-size:1rem;
+
+    line-height:1.8;
+
+    margin-bottom:35px;
+
+}
+
+
+/*=========================================
+                BOTÓN
+=========================================*/
+
+.last-hour-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:18px 35px;
+
+    border:2px solid rgba(255,193,7,.5);
+
+    color:white;
+
+    text-transform:uppercase;
+
+    font-weight:700;
+
+    border-radius:8px;
+
+    transition:.35s;
+
+}
+
+.last-hour-btn:hover{
+
+    background:#FFC107;
+
+    color:#111;
+
+}
+
+.last-hour-btn span{
+
+    transition:.3s;
+
+}
+
+.last-hour-btn:hover span{
+
+    transform:translate(5px,-4px);
+
+}
+
+
+/*=========================================
+            PRECIOS
+=========================================*/
+
+.last-hour-prices{
+
+    display:flex;
+
+    gap:18px;
+
+}
+
+.price-card{
+
+    background:#FFC107;
+
+    color:#111;
+
+    border-radius:10px;
+
+    padding:22px 35px;
+
+    text-align:center;
+
+    min-width:150px;
+
+    transition:.35s;
+
+}
+
+.price-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.price-card h3{
+
+    font-size:2.3rem;
+
+    font-weight:900;
+
+    margin-bottom:5px;
+
+}
+
+.price-card span{
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+}
+
+
+/*=========================================
+            HORARIO
+=========================================*/
+
+.last-hour-schedule{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.schedule-icon{
+
+    width:75px;
+
+    height:75px;
+
+    border-radius:50%;
+
+    border:2px solid white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.schedule-icon i{
+
+    font-size:2.2rem;
+
+    color:white;
+
+}
+
+.schedule-info small{
+
+    display:block;
+
+    color:#D8D8D8;
+
+    letter-spacing:2px;
+
+    margin-bottom:8px;
+
+}
+
+.schedule-info h3{
+
+    font-size:2rem;
+
+    font-weight:800;
+
+}
+/*=========================================
+            LAST HOUR MOBILE
+=========================================*/
+
+@media (max-width:768px){
+
+.last-hour{
+
+    padding:70px 25px;
+
+    background-position:center;
+
+}
+
+.last-hour-overlay{
+
+    background:rgba(5,5,5,.80);
+
+}
+
+.last-hour-container{
+
+    flex-direction:column;
+
+    text-align:center;
+
+    gap:35px;
+
+}
+
+.last-hour-content{
+
+    width:100%;
+
+}
+
+.last-hour-tag{
+
+    font-size:2.7rem;
+
+    line-height:1;
+
+}
+
+.last-hour-content h2{
+
+    font-size:1.5rem;
+
+}
+
+.last-hour-content p{
+
+    font-size:.95rem;
+
+    margin-bottom:25px;
+
+}
+
+.last-hour-btn{
+
+    width:100%;
+
+    justify-content:center;
+
+}
+
+.last-hour-prices{
+
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:15px;
+
+}
+
+.price-card{
+
+    min-width:auto;
+
+    padding:20px;
+
+}
+
+.price-card h3{
+
+    font-size:2rem;
+
+}
+
+.last-hour-schedule{
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.schedule-info h3{
+
+    font-size:1.4rem;
+
+}
+
+.schedule-info small{
+
+    letter-spacing:1px;
+
+}
+
+}
+/*=========================================
+        LAST HOUR SMALL MOBILE
+=========================================*/
+
+@media (max-width:480px){
+
+.last-hour{
+
+    padding:60px 20px;
+
+}
+
+.last-hour-tag{
+
+    font-size:2.2rem;
+
+}
+
+.last-hour-content h2{
+
+    font-size:1.2rem;
+
+}
+
+.last-hour-content p{
+
+    font-size:.9rem;
+
+}
+
+.last-hour-prices{
+
+    grid-template-columns:1fr;
+
+}
+
+.price-card{
+
+    width:100%;
+
+}
+
+.price-card h3{
+
+    font-size:2.2rem;
+
+}
+
+.last-hour-btn{
+
+    padding:16px;
+
+}
+
+.schedule-icon{
+
+    width:60px;
+
+    height:60px;
+
+}
+
+.schedule-icon i{
+
+    font-size:2rem;
+
+}
+
+.schedule-info h3{
+
+    font-size:1.2rem;
+
+}
+
+}
