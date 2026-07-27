@@ -1807,3 +1807,34 @@ font-size:2.4rem;
 }
 
 }
+.community{
+
+    margin-top:10rem;
+    min-height:100dvh;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+    background-image:url("resources/roster.png");
+
+    background-size:cover;
+
+    background-position:center;
+
+}
+@media (max-width:768px){
+
+.community{
+
+    background-image:url("resources/Instagram\ story\ -\ 7.png");
+
+}
+
+}
