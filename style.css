@@ -354,24 +354,6 @@ display:none;
 
 }
 
-/*=============================
-@media(max-width:768px){
-
-.header{
-
-padding:22px 8%;
-
-}
-
-.logo img{
-
-width:5rem;
-
-}
-
-}          RESET
-==============================*/
-
 @media (max-width:768px){
 
 .hero{
@@ -436,8 +418,6 @@ width:5rem;
 
 }
 
-
-
 @media(max-width:480px){
 
 .logo img{
@@ -460,13 +440,10 @@ width:100%;
 .hero{
     min-height:100vh;
     background:#050505;
-    display:flex;
-    align-items:center;
+    
     overflow:hidden;
     position:relative;
 }
-
-/* Fondo con iluminación */
 
 .hero::before{
     content:"";
@@ -479,10 +456,6 @@ width:100%;
 
     pointer-events:none;
 }
-
-/*=========================================
-          CONTENEDOR
-=========================================*/
 
 .hero-container{
 
@@ -524,11 +497,6 @@ width:100%;
 
 }
 
-
-/*=========================================
-            TEXTO
-=========================================*/
-
 .hero-subtitle{
 
     display:inline-block;
@@ -547,7 +515,6 @@ width:100%;
 
 }
 
-
 .hero-title{
 
     font-size:6rem;
@@ -562,13 +529,11 @@ width:100%;
 
 }
 
-
 .hero-title span{
 
     color:#7C3AED;
 
 }
-
 
 .hero-description{
 
@@ -585,11 +550,6 @@ width:100%;
     margin-bottom:45px;
 
 }
-
-
-/*=========================================
-          BOTONES
-=========================================*/
 
 .hero-buttons{
 
@@ -712,36 +672,7 @@ width:100%;
 }
 
 
-/*=========================================
-          IMAGEN
-=========================================*/
 
-.hero-image{
-
-    display:flex;
-
-    justify-content:flex-end;
-
-    position:relative;
-
-}
-
-
-.hero-image img{
-
-    width:100%;
-
-    max-width:900px;
-
-    object-fit:cover;
-
-    border-radius:20px;
-
-    user-select:none;
-
-    pointer-events:none;
-
-}
 
 
 /*=========================================
@@ -779,19 +710,6 @@ align-items:center;
 
 }
 
-.hero-image{
-
-justify-content:center;
-
-margin-top:40px;
-
-}
-
-.hero-image img{
-
-max-width:700px;
-
-}
 
 .hero-stats{
 
