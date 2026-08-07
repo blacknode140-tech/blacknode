@@ -1,39 +1,39 @@
-export function renderDashboard(){
+import { stations } from "./data.js";
+import { createStationCard } from "./stationCard.js";
+import { initDashboardEvents } from "./dashboardEvents.js";
+export function renderDashboard() {
 
-    const app=document.querySelector("#app");
+    const app = document.querySelector("#app");
 
-    app.innerHTML=`
+    app.innerHTML = `
 
         <header class="header">
 
-    <div class="logo">
+            <div class="logo">
+                BLACK NODE
+            </div>
 
-        BLACK NODE
+            <div class="user-info">
+                Administrador
+            </div>
 
-    </div>
+        </header>
 
-    <div class="user">
+        <main>
 
-        Administrador
+            <h2>ESTACIONES PS5</h2>
 
-    </div>
+            <section id="stations"></section>
 
-</header>
-
-<main>
-
-    <h2>
-
-        ESTACIONES PS5
-
-    </h2>
-
-    <section id="stations">
-
-    </section>
-
-</main>
+        </main>
 
     `;
 
+    const stationsContainer = document.querySelector("#stations");
+
+    stationsContainer.innerHTML = stations
+        .map(createStationCard)
+        .join("");
+
+    initDashboardEvents();
 }

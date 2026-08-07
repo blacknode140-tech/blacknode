@@ -7,9 +7,3 @@ document.addEventListener("DOMContentLoaded",()=>{
     renderDashboard();
 
 });
-const container = document.querySelector("#stations");
-
-container.innerHTML = stations
-    .map(station => createStationCard(station))
-    .join("");
-
