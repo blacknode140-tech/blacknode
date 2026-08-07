@@ -40,9 +40,6 @@ function handleDashboardClick(event) {
 
     console.clear();
 
-    console.log("Acción:", button.dataset.action);
-    console.log(getCurrentStation());
-
     if(button.dataset.action==="start"){
 
     openModal(createStartSessionModal(station));

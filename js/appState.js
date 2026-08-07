@@ -59,3 +59,16 @@ export function getSessions(){
     return appState.sessions;
 
 }
+export function updateStation(updatedStation) {
+
+    const index = appState.stations.findIndex(
+
+        station => station.id === updatedStation.id
+
+    );
+
+    if (index === -1) return;
+
+    appState.stations[index] = updatedStation;
+
+}

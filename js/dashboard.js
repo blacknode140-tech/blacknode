@@ -1,4 +1,4 @@
-import { stations } from "./data.js";
+import { getStations } from "./appState.js";
 import { createStationCard } from "./stationCard.js";
 import { initDashboardEvents } from "./dashboardEvents.js";
 export function renderDashboard() {
@@ -31,9 +31,14 @@ export function renderDashboard() {
 
     const stationsContainer = document.querySelector("#stations");
 
-    stationsContainer.innerHTML = stations
-        .map(createStationCard)
-        .join("");
+        console.log(stationsContainer);
+        console.log(getStations());
+
+        stationsContainer.innerHTML = getStations()
+            .map(createStationCard)
+            .join("");
+
+        initDashboardEvents();
 
     initDashboardEvents();
 }

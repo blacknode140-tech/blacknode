@@ -4,8 +4,11 @@ import {
     getCurrentStation,
     getSelectedPlan,
     addSession,
-    setSelectedPlan
+    setSelectedPlan,
+    updateStation,
+    getStations
 } from "./appState.js";
+import { renderDashboard } from "./dashboard.js";
 export function openModal(content) {
 
     const modalRoot = document.querySelector("#modal-root");
@@ -106,9 +109,11 @@ export function createStartSessionModal(station) {
 `;
 
 }
-function initModalEvents() {
+function initModalEvents(){
 
-    document.addEventListener("click", handleModalClick);
+    const modal = document.querySelector(".modal");
+
+    modal.addEventListener("click", handleModalClick);
 
 }
 function handleModalClick(event) {
@@ -136,9 +141,6 @@ if (planCard) {
     break;
 
     case "start-session":
-        console.log(getCurrentStation());
-
-        console.log(getSelectedPlan());
 
         const session = createSession(
 
@@ -149,9 +151,22 @@ if (planCard) {
         );
 
         addSession(session);
+        
+        // esta variable se puedo aver renombrado por updateStation
+        const station = {
 
-        console.log(session);
+            ...getCurrentStation(),
 
+            status: "occupied",
+
+            sessionId: session.id,
+
+            timer: "01:00:00"
+
+        };
+        updateStation(station);
+        closeModal();
+        renderDashboard();
     break;
 
 }
@@ -182,6 +197,5 @@ function selectPlan(card) {
 
 setSelectedPlan(selectedPlan);
 
-console.log(getSelectedPlan());
 
 }
