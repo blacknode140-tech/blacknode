@@ -9,8 +9,7 @@ export const stations = [
     {
         id: 2,
         name: "PS5 #2",
-        status: "occupied",
-        timer: "00:42:18"
+        status: "free",
     },
 
     {
@@ -22,8 +21,7 @@ export const stations = [
     {
         id: 4,
         name: "PS5 #4",
-        status: "occupied",
-        timer: "00:15:45"
+        status: "free",
     },
 
     {
@@ -87,6 +85,51 @@ export const plans = [
         minutes: 60,
         price: 10,
         color: "yellow"
+    }
+
+];
+
+export const products = [
+
+    {
+        id: 1,
+        name: "Coca-Cola",
+        price: 8,
+        category: "Bebida",
+        active: true
+    },
+
+    {
+        id: 2,
+        name: "Pepsi",
+        price: 8,
+        category: "Bebida",
+        active: true
+    },
+
+    {
+        id: 3,
+        name: "Tortrix",
+        price: 5,
+        category: "Snack",
+        active: true
+    },
+
+    {
+        id: 4,
+        name: "Doritos",
+        price: 10,
+        category: "Snack"
+        ,
+        active: true
+    },
+
+    {
+        id: 5,
+        name: "Snickers",
+        price: 12,
+        category: "Snack",
+        active: true
     }
 
 ];

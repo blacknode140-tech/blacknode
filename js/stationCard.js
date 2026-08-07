@@ -1,7 +1,10 @@
+import { formatTime } from "./timerManager.js";
+import { getSessionById } from "./appState.js";
 export function createStationCard(station) {
 
     const isFree = station.status === "free";
-
+    const session = getSessionById(station.sessionId);
+    const isFinished = session?.status === "finished";
     return `
 
         <div class="station-card">
@@ -10,9 +13,17 @@ export function createStationCard(station) {
 
                 <h3>${station.name}</h3>
 
-                <span class="status ${station.status}">
-                    ${isFree ? "🟢 Libre" : "🟠 Ocupada"}
-                </span>
+                <span class="status ${isFinished ? "finished" : station.status}">
+
+    ${
+        isFree
+            ? "🟢 Libre"
+            : isFinished
+                ? "🔴 Tiempo terminado"
+                : "🟠 En sesión"
+    }
+
+</span>
 
             </div>
 
@@ -38,17 +49,18 @@ export function createStationCard(station) {
                     `
                         <div class="timer">
 
-                            ${station.timer}
+                            ${session ? formatTime(session.remainingSeconds) : "00:00:00"}
 
                         </div>
 
-                        <button
-                            class="btn btn-warning"
-                            data-action="manage"
-                            data-id="${station.id}">
-                            Administrar
+                       <button
+    class="btn ${isFinished ? "btn-danger" : "btn-warning"}"
+    data-action="${isFinished ? "checkout" : "manage"}"
+    data-id="${station.id}">
 
-                        </button>
+    ${isFinished ? "💰 Cobrar" : "Administrar"}
+
+</button>
                     `
                 }
 

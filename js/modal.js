@@ -1,13 +1,20 @@
 import { plans } from "./data.js";
-import { createSession } from "./sessionManager.js";
+import {
+    createSession,
+    recalculateSessionTotals,
+    addExtraTime
+} from "./sessionManager.js";
 import {
     getCurrentStation,
     getSelectedPlan,
     addSession,
     setSelectedPlan,
     updateStation,
-    getStations
+    getStations,
+    getCurrentSession,
+    updateSession
 } from "./appState.js";
+import { formatTime } from "./timerManager.js";
 import { playSound } from "./soundManager.js";
 import { renderDashboard } from "./dashboard.js";
 export function openModal(content) {
@@ -110,6 +117,96 @@ export function createStartSessionModal(station) {
 `;
 
 }
+export function createManageSessionModal(station,session){
+
+   return `
+
+<h2>${station.name}</h2>
+
+<p>
+
+    Tiempo restante:
+
+    ${formatTime(session.remainingSeconds)}
+
+</p>
+
+<p>
+
+    Plan:
+
+    ${session.plan.name}
+
+</p>
+
+<p>
+
+    Duración:
+
+    ${session.plan.minutes} minutos
+
+</p>
+
+<p>
+
+    Juego:
+
+    Q${session.plan.price}
+
+</p>
+
+<p>
+
+    Extras:
+
+    Q${session.totals.extras}
+
+</p>
+
+<p>
+
+    Productos:
+
+    Q${session.totals.products}
+
+</p>
+
+<h3>
+
+    Total: Q${session.totals.total}
+
+</h3>
+<button
+    class="btn btn-primary"
+    data-action="add-time"
+    data-minutes="30"
+    data-price="10">
+
+    +30 minutos
+
+</button>
+<button
+    class="btn btn-primary"
+    data-action="add-time"
+    data-minutes="60"
+    data-price="15">
+
+    +1 hora
+
+</button>
+<button
+class="btn"
+data-action="close">
+
+Cerrar
+
+</button>
+
+
+`;
+
+}
+
 function initModalEvents(){
 
     const modal = document.querySelector(".modal");
@@ -154,23 +251,54 @@ if (planCard) {
         addSession(session);
         
         // esta variable se puedo aver renombrado por updateStation
-        const station = {
+        const updatedStation = {
 
-            ...getCurrentStation(),
+    ...getCurrentStation(),
 
-            status: "occupied",
+    status: "occupied",
 
-            sessionId: session.id,
+    sessionId: session.id,
 
-            timer: "01:00:00"
 
-        };
-        updateStation(station);
+};
+
+updateStation(updatedStation);
         playSound("notification");
         closeModal();
         renderDashboard();
     break;
 
+    case "add-time":
+
+    console.log(button.dataset);
+
+    const minutes = Number(button.dataset.minutes);
+
+    const price = Number(button.dataset.price);
+
+    console.log(minutes);
+
+    console.log(price);
+
+    const updatedSession = addExtraTime(
+
+        getCurrentSession(),
+
+        minutes,
+
+        price
+
+    );
+
+    console.log(updatedSession);
+
+    updateSession(updatedSession);
+
+    playSound("addHour");
+
+    renderDashboard();
+
+break;
 }
 
 }

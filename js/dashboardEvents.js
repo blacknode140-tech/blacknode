@@ -1,11 +1,17 @@
 import { stations } from "./data.js";
-import { openModal, createStartSessionModal } from "./modal.js";
+import {
+    openModal,
+    createStartSessionModal,
+    createManageSessionModal
+} from "./modal.js";
 import { createSession } from "./sessionManager.js";
 import {
     setCurrentStation,
     getCurrentStation,
     setSelectedPlan,
-    getSelectedPlan
+    getSelectedPlan,
+    getSessionById,
+    setCurrentSession
 } from "./appState.js";
 export function initDashboardEvents() {
 
@@ -44,6 +50,23 @@ function handleDashboardClick(event) {
 
     openModal(createStartSessionModal(station));
 
-}
+    }
+    if(button.dataset.action==="manage"){
 
+    const session = getSessionById(station.sessionId);
+    setCurrentSession(session);
+
+    openModal(
+
+        createManageSessionModal(
+
+            station,
+
+            session
+
+        )
+
+    );
+
+}
 }

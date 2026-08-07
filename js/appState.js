@@ -37,6 +37,17 @@ export function getCurrentStation(){
     return appState.currentStation;
 
 }
+export function setCurrentSession(session){
+
+    appState.currentSession = session;
+
+}
+
+export function getCurrentSession(){
+
+    return appState.currentSession;
+
+}
 export function setSelectedPlan(plan){
 
     appState.selectedPlan = plan;
@@ -70,5 +81,27 @@ export function updateStation(updatedStation) {
     if (index === -1) return;
 
     appState.stations[index] = updatedStation;
+
+}
+export function updateSession(updatedSession) {
+
+    const index = appState.sessions.findIndex(
+
+        session => session.id === updatedSession.id
+
+    );
+
+    if (index === -1) return;
+
+    appState.sessions[index] = updatedSession;
+
+}
+export function getSessionById(id){
+
+    return appState.sessions.find(
+
+        session => session.id === id
+
+    );
 
 }

@@ -31,8 +31,6 @@ export function renderDashboard() {
 
     const stationsContainer = document.querySelector("#stations");
 
-        console.log(stationsContainer);
-        console.log(getStations());
 
         stationsContainer.innerHTML = getStations()
             .map(createStationCard)
