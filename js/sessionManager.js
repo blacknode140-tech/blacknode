@@ -24,7 +24,7 @@ export function createSession(station, plan) {
         startTime: null,
 
         expectedEndTime: null,
-        remainingSeconds: plan.minutes * 60,
+        remainingSeconds: plan.minutes * 0.1,
 
         extras: [],
 
@@ -105,6 +105,27 @@ export function addExtraTime(session, minutes, price) {
     });
 
     session.remainingSeconds += minutes * 60;
+
+    recalculateSessionTotals(session);
+
+    return session;
+
+}
+export function addProductToSession(session, product) {
+
+    session.products.push({
+
+        id: crypto.randomUUID(),
+
+        productId: product.id,
+
+        name: product.name,
+
+        price: product.price,
+
+        quantity: 1
+
+    });
 
     recalculateSessionTotals(session);
 

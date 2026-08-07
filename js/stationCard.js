@@ -34,6 +34,14 @@ export function createStationCard(station) {
                     ?
 
                     `
+                    <div class="station-image">
+
+                <img
+                    src="../resources/playstation.png"
+                    class="playstation-image"
+                    alt="PlayStation 5">
+
+            </div>
                         <button
                             class="btn btn-primary"
                             data-action="start"

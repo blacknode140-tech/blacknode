@@ -1,8 +1,9 @@
-import { plans } from "./data.js";
+import { plans, products } from "./data.js";
 import {
     createSession,
     recalculateSessionTotals,
-    addExtraTime
+    addExtraTime,
+    addProductToSession
 } from "./sessionManager.js";
 import {
     getCurrentStation,
@@ -12,8 +13,9 @@ import {
     updateStation,
     getStations,
     getCurrentSession,
-    updateSession
+    updateSession,
 } from "./appState.js";
+
 import { formatTime } from "./timerManager.js";
 import { playSound } from "./soundManager.js";
 import { renderDashboard } from "./dashboard.js";
@@ -66,7 +68,7 @@ export function createStartSessionModal(station) {
     ${plans.map(plan => `
 
         <div
-            class="plan-card ${plan.color}"
+            class="plan-card ${plan.color} ${plan.highlight ? "featured-plan" : ""}"
             data-plan="${plan.id}"
             data-name="${plan.name}"
             data-price="${plan.price}"
@@ -157,7 +159,7 @@ export function createManageSessionModal(station,session){
 
 <p>
 
-    Extras:
+    Horas Extras:
 
     Q${session.totals.extras}
 
@@ -165,7 +167,7 @@ export function createManageSessionModal(station,session){
 
 <p>
 
-    Productos:
+    Snack O bebida:
 
     Q${session.totals.products}
 
@@ -195,6 +197,13 @@ export function createManageSessionModal(station,session){
 
 </button>
 <button
+    class="btn btn-primary"
+    data-action="products">
+
+    🥤 Agregar producto
+
+</button>
+<button
 class="btn"
 data-action="close">
 
@@ -206,7 +215,50 @@ Cerrar
 `;
 
 }
+export function createProductsModal() {
+    
 
+    return `
+
+        <h2>Agregar producto</h2>
+
+        <div class="products-grid">
+
+            ${products
+                .filter(product => product.active)
+                .map(product => `
+
+                    <button
+    class="product-card"
+    data-action="add-product"
+    data-id="${product.id}">
+
+    <div class="product-content">
+
+        <strong>${product.name}</strong>
+
+        <p>Q${product.price}</p>
+
+    </div>
+
+</button>
+
+                `)
+                .join("")}
+
+        </div>
+
+        <button
+            class="btn"
+            data-action="close">
+
+            Cerrar
+
+        </button>
+
+    `;
+
+}
 function initModalEvents(){
 
     const modal = document.querySelector(".modal");
@@ -227,7 +279,8 @@ if (planCard) {
     const button = event.target.closest("button");
 
     if (!button) return;
-
+    console.log(button);
+console.log(button?.dataset.action);
     const action = button.dataset.action;
 
   switch(action){
@@ -268,7 +321,8 @@ updateStation(updatedStation);
         renderDashboard();
     break;
 
-    case "add-time":
+    case "add-time":{
+
 
     console.log(button.dataset);
 
@@ -294,11 +348,72 @@ updateStation(updatedStation);
 
     updateSession(updatedSession);
 
+    playSound("notification");
+
+    renderDashboard();
+
+break;
+    }
+    case "products":
+
+    openModal(
+
+    createProductsModal()
+
+);
+
+break;
+
+
+
+    const product = products.find(
+
+        product => product.id === Number(button.dataset.id)
+
+    );
+
+    const updatedSession = addProductToSession(
+
+        getCurrentSession(),
+
+        product
+
+    );
+
+    updateSession(updatedSession);
+
     playSound("addHour");
 
     renderDashboard();
 
 break;
+
+case "add-product": {
+
+    const product = products.find(
+
+        product => product.id === Number(button.dataset.id)
+
+    );
+
+    const updatedSession = addProductToSession(
+
+        getCurrentSession(),
+
+        product
+
+    );
+
+    updateSession(updatedSession);
+
+    playSound("productAdded");
+
+    renderDashboard();
+
+    break;
+
+}
+
 }
 
 }

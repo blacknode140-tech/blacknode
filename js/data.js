@@ -75,7 +75,7 @@ export const plans = [
         players: 4,
         minutes: 30,
         price: 5,
-        color: "yellow"
+        highlight: true
     },
 
     {
@@ -84,7 +84,7 @@ export const plans = [
         players: 4,
         minutes: 60,
         price: 10,
-        color: "yellow"
+        highlight: true
     }
 
 ];
@@ -121,6 +121,54 @@ export const products = [
         price: 10,
         category: "Snack"
         ,
+        active: true
+    },
+
+    {
+        id: 5,
+        name: "Snickers",
+        price: 12,
+        category: "Snack",
+        active: true
+    },
+
+    {
+        id: 5,
+        name: "Snickers",
+        price: 12,
+        category: "Snack",
+        active: true
+    },
+
+    {
+        id: 5,
+        name: "Snickers",
+        price: 12,
+        category: "Snack",
+        active: true
+    },
+
+    {
+        id: 5,
+        name: "Snickers",
+        price: 12,
+        category: "Snack",
+        active: true
+    },
+
+    {
+        id: 5,
+        name: "Snickers",
+        price: 12,
+        category: "Snack",
+        active: true
+    },
+
+    {
+        id: 5,
+        name: "Snickers",
+        price: 12,
+        category: "Snack",
         active: true
     },
 
