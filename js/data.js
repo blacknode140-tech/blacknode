@@ -3,42 +3,37 @@ export const stations = [
     {
         id: 1,
         name: "PS5 #1",
-        status: "free"
+        status: "free",
+        image:"../resources/playstation.png"
     },
 
     {
         id: 2,
         name: "PS5 #2",
         status: "free",
+        image:"../resources/playstation.png"
     },
 
     {
         id: 3,
         name: "PS5 #3",
-        status: "free"
+        status: "free",
+        image:"../resources/playstation.png"
     },
 
     {
         id: 4,
         name: "PS5 #4",
         status: "free",
+        image:"../resources/playstation.png"
     },
 
     {
         id: 5,
-        name: "PS5 #5",
-        status: "free"
+        name: "SWITCH #5",
+        status: "free",
+        image:"../resources/switch.png"
     },
-    {
-        id: 6,
-        name: "PS5 #6",
-        status: "free"
-    },
-    {
-        id: 7,
-        name: "PS5 #7",
-        status: "free"
-    }
 ];
 export const plans = [
 

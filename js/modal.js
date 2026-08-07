@@ -15,7 +15,7 @@ import {
     getCurrentSession,
     updateSession,
 } from "./appState.js";
-
+import { saveSale } from "./googleSheets.js";
 import { formatTime } from "./timerManager.js";
 import { playSound } from "./soundManager.js";
 import { renderDashboard } from "./dashboard.js";
@@ -27,7 +27,7 @@ export function openModal(content) {
 
         <div class="modal-overlay">
 
-            <div class="modal">
+            <div class="modal ${content.includes("checkout-container") ? "modal-xl" : ""}">
 
                 <button class="close-modal" data-action="close">
                         
@@ -215,6 +215,222 @@ Cerrar
 `;
 
 }
+export function createCheckoutModal(station, session){
+    const groupedProducts = {};
+
+session.products.forEach(product => {
+
+    if (!groupedProducts[product.productId]) {
+
+        groupedProducts[product.productId] = {
+
+            ...product,
+
+            quantity: 1
+
+        };
+
+    } else {
+
+        groupedProducts[product.productId].quantity++;
+
+    }
+
+});
+console.log(groupedProducts);
+
+    return `
+
+    <h2>
+
+        💰 Finalizar sesión
+
+    </h2>
+
+    <h3>
+
+        ${station.name}
+
+    </h3>
+
+    <div class="checkout-container">
+
+        <div class="checkout-summary">
+
+            <h4>
+
+                Resumen
+
+            </h4>
+
+            <p>
+
+                Juego
+
+                <span>
+
+                    Q${session.plan.price}
+
+                </span>
+
+            </p>
+
+            <p>
+
+                Horas extras
+
+                <span>
+
+                    Q${session.totals.extras}
+
+                </span>
+
+            </p>
+
+            <p>
+
+                Snacks y bebidas
+
+                <span>
+
+                    Q${session.totals.products}
+
+                </span>
+
+            </p>
+
+            <hr>
+
+            <h3>
+
+                Total
+
+                <span>
+
+                    Q${session.totals.total}
+
+                </span>
+
+            </h3>
+
+        </div>
+
+        <div class="checkout-products">
+        <h4>
+
+        Productos consumidos
+
+    </h4>
+
+    ${
+
+        session.products.length === 0
+
+        ?
+
+        `
+
+            <p class="empty-products">
+
+                No se agregaron productos.
+
+            </p>
+
+        `
+
+        :
+
+        Object.values(groupedProducts).map(product =>  `
+
+            <div class="checkout-product">
+
+                <span>
+
+                    ${product.name}
+
+                </span>
+
+                <strong>
+
+    x${product.quantity}
+
+</strong>
+
+<span>
+
+    Q${product.price * product.quantity}
+
+</span>
+
+            </div>
+
+        `).join("")
+
+    }
+
+
+        </div>
+
+    </div>
+
+    <div class="checkout-payment">
+
+    <h4>
+
+        Método de pago
+
+    </h4>
+
+    <div class="payment-grid">
+
+        <button
+            class="payment-card"
+            data-action="payment"
+            data-method="cash">
+
+            <span>💵</span>
+
+            <strong>Efectivo</strong>
+
+        </button>
+
+        <button
+            class="payment-card"
+            data-action="payment"
+            data-method="card">
+
+            <span>💳</span>
+
+            <strong>Tarjeta</strong>
+
+        </button>
+
+        <button
+            class="payment-card"
+            data-action="payment"
+            data-method="transfer">
+
+            <span>📲</span>
+
+            <strong>Transferencia</strong>
+
+        </button>
+
+    </div>
+
+    <button
+        class="btn"
+        data-action="close">
+
+        Cancelar
+
+    </button>
+
+</div>
+
+`;
+
+}
 export function createProductsModal() {
     
 
@@ -279,20 +495,30 @@ if (planCard) {
     const button = event.target.closest("button");
 
     if (!button) return;
-    console.log(button);
-console.log(button?.dataset.action);
+
     const action = button.dataset.action;
 
   switch(action){
 
     case "close":
 
-        closeModal();
+        setSelectedPlan(null);
+
+    closeModal();
+
 
     break;
+    
 
     case "start-session":
 
+        if (!getSelectedPlan()) {
+
+    playSound("error");
+
+    return;
+
+}
         const session = createSession(
 
             getCurrentStation(),
@@ -354,15 +580,27 @@ updateStation(updatedStation);
 
 break;
     }
-    case "products":
+    case "payment":{
 
-    openModal(
+    completeCheckout(
 
-    createProductsModal()
+        button.dataset.method
 
-);
+    );
 
 break;
+
+}
+    case "products":
+
+    
+        openModal(
+
+        createProductsModal()
+
+    );
+
+    break;
 
 
 
@@ -444,3 +682,124 @@ setSelectedPlan(selectedPlan);
 
 
 }
+async function completeCheckout(method){
+
+    playSound("payment");
+
+    const session = getCurrentSession();
+
+    const station = getCurrentStation();
+
+    const now = new Date();
+
+const paymentMethods = {
+
+    cash: "Efectivo",
+
+    card: "Tarjeta",
+
+    transfer: "Transferencia"
+
+};
+const groupedProducts = {};
+
+session.products.forEach(product => {
+
+    const key = product.productId;
+
+    if (!groupedProducts[key]) {
+
+        groupedProducts[key] = {
+
+            name: product.name,
+
+            quantity: 1
+
+        };
+
+    } else {
+
+        groupedProducts[key].quantity++;
+
+    }
+
+});
+
+const productsSold = Object.values(groupedProducts)
+    .map(product => `${product.name} (${product.quantity})`)
+    .join(", ");
+
+
+const saleId = `BN-${
+    now.getFullYear()
+}${
+    String(now.getMonth() + 1).padStart(2, "0")
+}${
+    String(now.getDate()).padStart(2, "0")
+}-${
+    String(now.getHours()).padStart(2, "0")
+}${
+    String(now.getMinutes()).padStart(2, "0")
+}${
+    String(now.getSeconds()).padStart(2, "0")
+}-${station.id}`;
+
+const sale = {
+    saleId,    
+    date: now.toISOString().split("T")[0],
+
+    time: now.toLocaleTimeString("es-GT", {
+
+        hour12: false
+
+    }),
+
+    station: station.name,
+
+    plan: session.plan.name,
+
+    minutes: session.plan.minutes,
+
+    startTime: session.startTime,
+
+    endTime: now.toLocaleTimeString("es-GT", {
+
+        hour12: false
+
+    }),
+
+    game: session.plan.price,
+
+    extras: session.totals.extras,
+
+    products: session.totals.products,
+
+    total: session.totals.total,
+
+    paymentMethod: paymentMethods[method],
+
+    productsSold
+
+};
+
+    console.log(sale);
+
+    await saveSale(sale);
+
+    const updatedStation = {
+
+        ...station,
+
+        status: "free",
+
+        sessionId: null
+
+    };
+
+    updateStation(updatedStation);
+
+    closeModal();
+
+    renderDashboard();
+
+} 

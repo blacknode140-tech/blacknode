@@ -900,3 +900,203 @@ main h2{
     scrollbar-color:var(--border) transparent;
 
 }
+/*=====================================
+    CHECKOUT
+=====================================*/
+
+.modal-xl{
+
+    width:min(950px,95vw);
+
+    max-width:950px;
+
+}
+/*=====================================
+    CHECKOUT
+=====================================*/
+
+.checkout-container{
+
+    display:grid;
+
+    grid-template-columns:320px 1fr;
+
+    gap:2rem;
+
+    margin:2rem 0;
+
+}
+.checkout-summary{
+
+    background:var(--surface-light);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius-md);
+
+    padding:1.5rem;
+
+}
+.checkout-products{
+
+    background:var(--surface-light);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius-md);
+
+    padding:1.5rem;
+
+    min-height:350px;
+
+}
+.checkout-footer{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:1rem;
+
+    margin-top:2rem;
+
+}
+.checkout-footer .btn{
+
+    width:220px;
+
+}
+.checkout-product{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:.9rem 0;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.checkout-product:last-child{
+
+    border-bottom:none;
+
+}
+
+.checkout-product span{
+
+    color:var(--text);
+
+}
+
+.checkout-product strong{
+
+    color:var(--success);
+
+}
+
+.empty-products{
+
+    margin-top:2rem;
+
+    text-align:center;
+
+    color:var(--text-secondary);
+
+}
+.checkout-product{
+
+    display:grid;
+
+    grid-template-columns:1fr auto auto;
+
+    align-items:center;
+
+    gap:1rem;
+
+}
+
+.checkout-product strong{
+
+    color:var(--text-secondary);
+
+    font-size:.9rem;
+
+}
+
+.checkout-product span{
+
+    color:var(--success);
+
+    font-weight:700;
+
+}
+/*=====================================
+    PAYMENT
+=====================================*/
+
+.checkout-payment{
+
+    margin-top:2rem;
+
+}
+.payment-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:1rem;
+
+    margin:1rem 0 2rem;
+
+}
+.payment-card{
+
+    background:var(--surface-light);
+
+    border:2px solid transparent;
+
+    border-radius:var(--radius-md);
+
+    padding:1.5rem 1rem;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:.75rem;
+
+    transition:var(--transition);
+
+}.payment-card span{
+
+    font-size:2rem;
+
+}
+.payment-card strong{
+
+    color:var(--text);
+
+}
+.payment-card:hover{
+
+    border-color:var(--primary);
+
+    transform:translateY(-3px);
+
+    box-shadow:var(--shadow-md);
+
+}
+.checkout-payment .btn{
+
+    width:220px;
+
+}

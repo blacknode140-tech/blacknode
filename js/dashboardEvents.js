@@ -2,7 +2,8 @@ import { stations } from "./data.js";
 import {
     openModal,
     createStartSessionModal,
-    createManageSessionModal
+    createManageSessionModal,
+    createCheckoutModal
 } from "./modal.js";
 import { createSession } from "./sessionManager.js";
 import {
@@ -59,6 +60,25 @@ function handleDashboardClick(event) {
     openModal(
 
         createManageSessionModal(
+
+            station,
+
+            session
+
+        )
+
+    );
+
+    }
+    if(button.dataset.action==="checkout"){
+
+    const session = getSessionById(station.sessionId);
+
+    setCurrentSession(session);
+
+    openModal(
+
+        createCheckoutModal(
 
             station,
 

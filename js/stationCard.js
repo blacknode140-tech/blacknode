@@ -37,7 +37,7 @@ export function createStationCard(station) {
                     <div class="station-image">
 
                 <img
-                    src="../resources/playstation.png"
+                    src="${station.image}"
                     class="playstation-image"
                     alt="PlayStation 5">
 
