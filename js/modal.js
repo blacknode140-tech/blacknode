@@ -8,6 +8,7 @@ import {
     updateStation,
     getStations
 } from "./appState.js";
+import { playSound } from "./soundManager.js";
 import { renderDashboard } from "./dashboard.js";
 export function openModal(content) {
 
@@ -165,6 +166,7 @@ if (planCard) {
 
         };
         updateStation(station);
+        playSound("notification");
         closeModal();
         renderDashboard();
     break;

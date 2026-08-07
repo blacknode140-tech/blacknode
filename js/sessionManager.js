@@ -23,6 +23,7 @@ export function createSession(station, plan) {
         startTime: null,
 
         expectedEndTime: null,
+        remainingSeconds: plan.minutes * 60,
 
         extras: [],
 
